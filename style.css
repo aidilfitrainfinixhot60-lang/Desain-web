@@ -1,0 +1,872 @@
+/* ============================================================
+   style.css — LogoTok Toko Online
+   Semua styling website ada di file ini
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABEL GLOBAL (CSS Custom Properties)
+      Warna, font, shadow, radius diatur di sini agar
+      mudah diubah seragam di seluruh halaman
+   ============================================================ */
+:root {
+  --primary        : #FF6B35;       /* Oranye utama */
+  --primary-dark   : #e85a24;       /* Oranye gelap (hover) */
+  --primary-light  : #fff4f0;       /* Oranye sangat muda (background) */
+  --secondary      : #1A1A2E;       /* Biru gelap (navbar, judul) */
+  --accent         : #FFD700;       /* Kuning emas (tombol hero) */
+  --success        : #27AE60;       /* Hijau (checkout, konfirmasi) */
+  --danger         : #E74C3C;       /* Merah (hapus item) */
+  --bg             : #F8F5F2;       /* Background halaman */
+  --white          : #FFFFFF;
+  --gray-100       : #F5F5F5;
+  --gray-200       : #ECECEC;
+  --gray-400       : #AAAAAA;
+  --gray-600       : #666666;
+  --gray-800       : #333333;
+  --text           : #1A1A2E;
+
+  --shadow-sm      : 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md      : 0 4px 20px rgba(0,0,0,0.12);
+  --shadow-lg      : 0 8px 40px rgba(0,0,0,0.16);
+
+  --radius         : 12px;
+  --radius-lg      : 20px;
+
+  --font-main      : 'Plus Jakarta Sans', sans-serif;
+  --font-display   : 'Sora', sans-serif;
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+* {
+  margin     : 0;
+  padding    : 0;
+  box-sizing : border-box;
+}
+
+body {
+  font-family : var(--font-main);
+  background  : var(--bg);
+  color       : var(--text);
+  min-height  : 100vh;
+}
+
+
+/* ============================================================
+   3. SISTEM HALAMAN (PAGE ROUTING)
+      Hanya halaman dengan class .active yang ditampilkan
+   ============================================================ */
+.page {
+  display : none;
+}
+
+.page.active {
+  display   : block;
+  animation : fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+
+/* ============================================================
+   4. NAVBAR
+   ============================================================ */
+.navbar {
+  background  : var(--secondary);
+  padding     : 0 24px;
+  display     : flex;
+  align-items : center;
+  justify-content : space-between;
+  height      : 60px;
+  position    : sticky;
+  top         : 0;
+  z-index     : 100;
+  box-shadow  : 0 2px 16px rgba(26,26,46,0.3);
+}
+
+.navbar .logo {
+  font-family : var(--font-display);
+  font-size   : 1.4rem;
+  font-weight : 700;
+  color       : var(--white);
+  cursor      : pointer;
+  letter-spacing : -0.5px;
+}
+
+.navbar .logo span {
+  color : var(--primary);
+}
+
+.nav-links {
+  display     : flex;
+  gap         : 24px;
+  align-items : center;
+}
+
+.nav-links a {
+  color       : rgba(255,255,255,0.75);
+  text-decoration : none;
+  font-size   : 0.88rem;
+  font-weight : 500;
+  cursor      : pointer;
+  transition  : color 0.2s;
+}
+
+.nav-links a:hover {
+  color : var(--white);
+}
+
+.nav-cart {
+  position   : relative;
+  cursor     : pointer;
+  color      : var(--white);
+  font-size  : 1.3rem;
+  padding    : 8px;
+}
+
+.nav-cart .badge {
+  position      : absolute;
+  top           : 2px;
+  right         : 2px;
+  background    : var(--primary);
+  color         : white;
+  font-size     : 0.65rem;
+  font-weight   : 700;
+  border-radius : 50%;
+  width         : 18px;
+  height        : 18px;
+  display       : flex;
+  align-items   : center;
+  justify-content : center;
+}
+
+
+/* ============================================================
+   5. HERO BANNER (Beranda)
+   ============================================================ */
+.hero-banner {
+  background : linear-gradient(135deg, var(--secondary) 0%, #2d2d5e 60%, var(--primary) 100%);
+  padding    : 48px 24px;
+  text-align : center;
+  position   : relative;
+  overflow   : hidden;
+}
+
+/* Lingkaran dekoratif di latar */
+.hero-banner::before {
+  content       : '';
+  position      : absolute;
+  top           : -50%;
+  right         : -20%;
+  width         : 500px;
+  height        : 500px;
+  border-radius : 50%;
+  background    : rgba(255,107,53,0.15);
+  pointer-events: none;
+}
+
+.hero-banner h1 {
+  font-family : var(--font-display);
+  font-size   : 2rem;
+  color       : white;
+  font-weight : 700;
+  margin-bottom : 8px;
+}
+
+.hero-banner p {
+  color         : rgba(255,255,255,0.7);
+  font-size     : 0.95rem;
+  margin-bottom : 20px;
+}
+
+.hero-promo {
+  background    : var(--primary);
+  color         : white;
+  border-radius : var(--radius);
+  padding       : 16px 24px;
+  display       : inline-block;
+  margin        : 0 auto;
+}
+
+.hero-promo .promo-title { font-size: 1.3rem; font-weight: 800; }
+.hero-promo .promo-sub   { font-size: 0.82rem; opacity: 0.9; }
+
+.hero-promo .promo-code {
+  margin-top    : 8px;
+  background    : rgba(0,0,0,0.2);
+  padding       : 4px 12px;
+  border-radius : 20px;
+  font-size     : 0.8rem;
+  letter-spacing: 1px;
+}
+
+.btn-belanja {
+  display     : inline-block;
+  margin-top  : 14px;
+  background  : var(--accent);
+  color       : var(--secondary);
+  font-weight : 700;
+  font-size   : 0.9rem;
+  padding     : 10px 28px;
+  border-radius : 30px;
+  cursor      : pointer;
+  border      : none;
+  transition  : transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-belanja:hover {
+  transform  : translateY(-2px);
+  box-shadow : 0 6px 20px rgba(255,215,0,0.4);
+}
+
+
+/* ============================================================
+   6. JUDUL SECTION
+   ============================================================ */
+.section-title {
+  font-family   : var(--font-display);
+  font-size     : 1.2rem;
+  font-weight   : 700;
+  color         : var(--secondary);
+  padding       : 28px 20px 16px;
+  border-left   : 4px solid var(--primary);
+  margin        : 0 0 0 20px;
+  display       : inline-block;
+}
+
+
+/* ============================================================
+   7. CHIP KATEGORI
+   ============================================================ */
+.categories {
+  padding     : 0 20px 20px;
+  display     : flex;
+  gap         : 10px;
+  flex-wrap   : wrap;
+  overflow-x  : auto;
+  scrollbar-width: none;   /* Firefox — sembunyikan scrollbar */
+}
+
+/* Sembunyikan scrollbar di Chrome/Safari */
+.categories::-webkit-scrollbar { display: none; }
+
+.chip {
+  padding       : 8px 18px;
+  border-radius : 30px;
+  border        : 2px solid var(--gray-200);
+  background    : var(--white);
+  font-size     : 0.82rem;
+  font-weight   : 600;
+  color         : var(--gray-600);
+  cursor        : pointer;
+  transition    : all 0.2s;
+}
+
+.chip:hover,
+.chip.active {
+  background   : var(--primary);
+  border-color : var(--primary);
+  color        : white;
+}
+
+
+/* ============================================================
+   8. GRID & KARTU PRODUK
+   ============================================================ */
+.product-grid {
+  display               : grid;
+  grid-template-columns : repeat(auto-fill, minmax(160px, 1fr));
+  gap                   : 16px;
+  padding               : 0 20px 24px;
+}
+
+.product-card {
+  background    : var(--white);
+  border-radius : var(--radius);
+  overflow      : hidden;
+  box-shadow    : var(--shadow-sm);
+  transition    : transform 0.2s, box-shadow 0.2s;
+  cursor        : pointer;
+}
+
+.product-card:hover {
+  transform  : translateY(-4px);
+  box-shadow : var(--shadow-md);
+}
+
+.product-img {
+  width        : 100%;
+  aspect-ratio : 1;
+  background   : linear-gradient(135deg, var(--gray-100), var(--gray-200));
+  display      : flex;
+  align-items  : center;
+  justify-content : center;
+  font-size    : 2.5rem;
+  position     : relative;
+  overflow     : hidden;
+}
+
+/* Overlay gradien ringan di gambar produk */
+.product-img::after {
+  content    : '';
+  position   : absolute;
+  inset      : 0;
+  background : linear-gradient(45deg, transparent 60%, rgba(255,107,53,0.08));
+}
+
+.product-info  { padding: 12px; }
+.product-name  { font-size: 0.85rem; font-weight: 600; color: var(--gray-800); margin-bottom: 4px; }
+.product-price { font-size: 0.9rem;  font-weight: 700; color: var(--primary);  margin-bottom: 10px; }
+
+.btn-detail {
+  width         : 100%;
+  padding       : 8px;
+  background    : var(--primary-light);
+  color         : var(--primary);
+  border        : 1.5px solid var(--primary);
+  border-radius : 8px;
+  font-size     : 0.8rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  transition    : all 0.2s;
+}
+
+.btn-detail:hover {
+  background : var(--primary);
+  color      : white;
+}
+
+
+/* ============================================================
+   9. HALAMAN DETAIL PRODUK
+   ============================================================ */
+.detail-img-wrap {
+  background   : var(--white);
+  padding      : 24px;
+  display      : flex;
+  align-items  : center;
+  justify-content : center;
+  min-height   : 260px;
+  font-size    : 5rem;
+}
+
+.detail-body { padding: 20px; }
+
+.detail-body h1 {
+  font-family   : var(--font-display);
+  font-size     : 1.3rem;
+  font-weight   : 700;
+  color         : var(--secondary);
+  margin-bottom : 10px;
+}
+
+.detail-desc {
+  font-size     : 0.88rem;
+  color         : var(--gray-600);
+  line-height   : 1.7;
+  margin-bottom : 16px;
+}
+
+.detail-price {
+  font-size     : 1.6rem;
+  font-weight   : 800;
+  color         : var(--primary);
+  margin-bottom : 16px;
+}
+
+/* Baris kontrol jumlah */
+.qty-row {
+  display     : flex;
+  align-items : center;
+  gap         : 12px;
+  margin-bottom : 20px;
+}
+
+.qty-btn {
+  width         : 36px;
+  height        : 36px;
+  border-radius : 8px;
+  border        : 2px solid var(--gray-200);
+  background    : var(--white);
+  font-size     : 1.1rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  display       : flex;
+  align-items   : center;
+  justify-content : center;
+  color         : var(--secondary);
+  transition    : all 0.2s;
+}
+
+.qty-btn:hover {
+  border-color : var(--primary);
+  color        : var(--primary);
+}
+
+.qty-val {
+  font-size  : 1rem;
+  font-weight: 700;
+  min-width  : 24px;
+  text-align : center;
+}
+
+.btn-cart {
+  width         : 100%;
+  padding       : 14px;
+  background    : var(--primary);
+  color         : white;
+  border        : none;
+  border-radius : var(--radius);
+  font-size     : 1rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  transition    : background 0.2s, transform 0.2s;
+  margin-bottom : 20px;
+}
+
+.btn-cart:hover {
+  background : var(--primary-dark);
+  transform  : translateY(-2px);
+}
+
+
+/* ============================================================
+   10. ULASAN PRODUK
+   ============================================================ */
+.reviews-section       { padding: 0 20px; }
+.reviews-section h3    { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+
+.review-card {
+  background    : var(--white);
+  border-radius : var(--radius);
+  padding       : 14px;
+  margin-bottom : 10px;
+  box-shadow    : var(--shadow-sm);
+}
+
+.reviewer-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.review-text   { font-size: 0.83rem; color: var(--gray-600); }
+.stars         { color: var(--accent); font-size: 0.9rem; margin-bottom: 4px; }
+
+
+/* ============================================================
+   11. HALAMAN PENCARIAN
+   ============================================================ */
+.search-bar-wrap {
+  padding : 16px 20px;
+  display : flex;
+  gap     : 10px;
+}
+
+.search-input {
+  flex          : 1;
+  padding       : 12px 16px;
+  border-radius : var(--radius);
+  border        : 2px solid var(--gray-200);
+  font-family   : var(--font-main);
+  font-size     : 0.9rem;
+  background    : var(--white);
+  outline       : none;
+  transition    : border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color : var(--primary);
+}
+
+.btn-search {
+  padding       : 12px 20px;
+  background    : var(--primary);
+  color         : white;
+  border        : none;
+  border-radius : var(--radius);
+  font-size     : 0.9rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  transition    : background 0.2s;
+}
+
+.btn-search:hover {
+  background : var(--primary-dark);
+}
+
+
+/* ============================================================
+   12. HALAMAN KERANJANG
+   ============================================================ */
+.cart-item {
+  background    : var(--white);
+  border-radius : var(--radius);
+  padding       : 14px;
+  display       : flex;
+  gap           : 14px;
+  align-items   : center;
+  margin-bottom : 12px;
+  box-shadow    : var(--shadow-sm);
+}
+
+.cart-item-img {
+  width         : 70px;
+  height        : 70px;
+  background    : var(--gray-100);
+  border-radius : 10px;
+  display       : flex;
+  align-items   : center;
+  justify-content : center;
+  font-size     : 1.8rem;
+  flex-shrink   : 0;
+}
+
+.cart-item-info   { flex: 1; }
+.cart-item-name   { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.cart-item-price  { color: var(--primary); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+
+.btn-hapus {
+  padding       : 6px 14px;
+  background    : #ffeaea;
+  color         : var(--danger);
+  border        : 1.5px solid var(--danger);
+  border-radius : 8px;
+  font-size     : 0.78rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  transition    : all 0.2s;
+}
+
+.btn-hapus:hover {
+  background : var(--danger);
+  color      : white;
+}
+
+.cart-total-box {
+  background    : var(--white);
+  border-radius : var(--radius);
+  padding       : 16px;
+  box-shadow    : var(--shadow-sm);
+  margin        : 0 20px 20px;
+}
+
+.total-row {
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+}
+
+.total-label  { font-size: 1rem; font-weight: 600; }
+.total-amount { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+
+.btn-checkout {
+  width         : 100%;
+  padding       : 14px;
+  background    : var(--success);
+  color         : white;
+  border        : none;
+  border-radius : var(--radius);
+  font-size     : 1rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  margin-top    : 12px;
+  transition    : all 0.2s;
+}
+
+.btn-checkout:hover {
+  background : #219150;
+  transform  : translateY(-2px);
+}
+
+
+/* ============================================================
+   13. FORM (Pengiriman & Checkout)
+   ============================================================ */
+.form-card {
+  background    : var(--white);
+  border-radius : var(--radius-lg);
+  padding       : 24px;
+  margin        : 20px;
+  box-shadow    : var(--shadow-md);
+}
+
+.form-title {
+  font-family   : var(--font-display);
+  font-size     : 1.1rem;
+  font-weight   : 700;
+  color         : var(--secondary);
+  margin-bottom : 20px;
+  padding-bottom: 12px;
+  border-bottom : 2px solid var(--gray-100);
+}
+
+.form-group    { margin-bottom: 16px; }
+
+.form-label {
+  font-size     : 0.83rem;
+  font-weight   : 600;
+  color         : var(--gray-600);
+  margin-bottom : 6px;
+  display       : block;
+}
+
+.form-control {
+  width         : 100%;
+  padding       : 12px 14px;
+  border        : 2px solid var(--gray-200);
+  border-radius : 10px;
+  font-family   : var(--font-main);
+  font-size     : 0.9rem;
+  outline       : none;
+  transition    : border-color 0.2s;
+  background    : var(--bg);
+}
+
+.form-control:focus {
+  border-color : var(--primary);
+  background   : white;
+}
+
+.btn-primary-full {
+  width         : 100%;
+  padding       : 14px;
+  background    : var(--primary);
+  color         : white;
+  border        : none;
+  border-radius : var(--radius);
+  font-family   : var(--font-main);
+  font-size     : 1rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  transition    : all 0.2s;
+}
+
+.btn-primary-full:hover {
+  background : var(--primary-dark);
+  transform  : translateY(-2px);
+}
+
+
+/* ============================================================
+   14. PILIHAN PEMBAYARAN
+   ============================================================ */
+.payment-option {
+  display       : flex;
+  align-items   : center;
+  gap           : 10px;
+  padding       : 12px 14px;
+  border-radius : 10px;
+  border        : 2px solid var(--gray-200);
+  margin-bottom : 10px;
+  cursor        : pointer;
+  transition    : all 0.2s;
+}
+
+.payment-option.selected {
+  border-color : var(--primary);
+  background   : var(--primary-light);
+}
+
+.payment-option input {
+  accent-color : var(--primary);
+  width        : 18px;
+  height       : 18px;
+  cursor       : pointer;
+}
+
+.payment-option label {
+  font-size   : 0.9rem;
+  font-weight : 600;
+  cursor      : pointer;
+}
+
+
+/* ============================================================
+   15. HALAMAN KONFIRMASI PESANAN
+   ============================================================ */
+.confirm-alert {
+  background    : #eefbf3;
+  border        : 2px solid var(--success);
+  border-radius : var(--radius);
+  padding       : 14px 16px;
+  margin-bottom : 20px;
+  display       : flex;
+  align-items   : center;
+  gap           : 10px;
+  font-size     : 0.9rem;
+  font-weight   : 600;
+  color         : var(--success);
+}
+
+.summary-row {
+  display         : flex;
+  justify-content : space-between;
+  padding         : 8px 0;
+  font-size       : 0.88rem;
+  border-bottom   : 1px solid var(--gray-100);
+}
+
+.summary-row:last-child { border-bottom: none; }
+
+.summary-row.total {
+  font-weight : 800;
+  font-size   : 1rem;
+  color       : var(--primary);
+}
+
+.info-row {
+  display        : flex;
+  flex-direction : column;
+  gap            : 4px;
+  font-size      : 0.85rem;
+  color          : var(--gray-600);
+}
+
+.info-row strong { color: var(--text); }
+
+.divider {
+  border     : none;
+  border-top : 1px solid var(--gray-100);
+  margin     : 16px 0;
+}
+
+.btn-back-home {
+  width         : 100%;
+  padding       : 13px;
+  background    : var(--secondary);
+  color         : white;
+  border        : none;
+  border-radius : var(--radius);
+  font-family   : var(--font-main);
+  font-size     : 0.9rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  margin-top    : 12px;
+  transition    : background 0.2s;
+}
+
+.btn-back-home:hover {
+  background : #2d2d5e;
+}
+
+
+/* ============================================================
+   16. KOMPONEN BERSAMA
+   ============================================================ */
+
+/* --- Page Header (tombol back + judul) --- */
+.page-header {
+  background  : var(--white);
+  padding     : 16px 20px;
+  display     : flex;
+  align-items : center;
+  gap         : 12px;
+  border-bottom : 2px solid var(--gray-100);
+  position    : sticky;
+  top         : 60px;   /* tepat di bawah navbar */
+  z-index     : 90;
+}
+
+.btn-back-icon {
+  width         : 36px;
+  height        : 36px;
+  border-radius : 10px;
+  border        : 2px solid var(--gray-200);
+  background    : none;
+  cursor        : pointer;
+  display       : flex;
+  align-items   : center;
+  justify-content : center;
+  font-size     : 1rem;
+  color         : var(--secondary);
+  transition    : all 0.2s;
+}
+
+.btn-back-icon:hover {
+  border-color : var(--primary);
+  color        : var(--primary);
+}
+
+.page-header h2 {
+  font-family : var(--font-display);
+  font-size   : 1rem;
+  font-weight : 700;
+}
+
+/* --- Step Indicator Checkout --- */
+.step-indicator {
+  display     : flex;
+  padding     : 12px 20px;
+  gap         : 4px;
+  align-items : center;
+  font-size   : 0.75rem;
+  font-weight : 600;
+  overflow-x  : auto;
+}
+
+.step        { color: var(--gray-400); white-space: nowrap; }
+.step.active { color: var(--primary); }
+.step-sep    { color: var(--gray-300); }
+
+/* --- Toast Notifikasi --- */
+.toast {
+  position   : fixed;
+  bottom     : 24px;
+  left       : 50%;
+  transform  : translateX(-50%) translateY(80px);   /* tersembunyi default */
+  background : var(--secondary);
+  color      : white;
+  padding    : 12px 24px;
+  border-radius : 30px;
+  font-size  : 0.88rem;
+  font-weight: 600;
+  z-index    : 999;
+  transition : transform 0.3s ease;
+  white-space: nowrap;
+  box-shadow : var(--shadow-lg);
+}
+
+.toast.show    { transform: translateX(-50%) translateY(0); }   /* muncul */
+.toast.success { background: var(--success); }
+
+/* --- Empty State (keranjang kosong, dll) --- */
+.empty-state {
+  text-align : center;
+  padding    : 60px 20px;
+  color      : var(--gray-400);
+}
+
+.empty-state .icon { font-size: 4rem; margin-bottom: 12px; }
+.empty-state p     { font-size: 0.9rem; }
+
+
+/* ============================================================
+   17. FOOTER
+   ============================================================ */
+.footer {
+  background  : var(--secondary);
+  color       : rgba(255,255,255,0.5);
+  text-align  : center;
+  padding     : 20px;
+  font-size   : 0.8rem;
+  margin-top  : 32px;
+}
+
+.footer a {
+  color           : rgba(255,255,255,0.5);
+  text-decoration : none;
+  margin          : 0 8px;
+}
+
+.footer a:hover { color: var(--primary); }
+
+
+/* ============================================================
+   18. RESPONSIVE (Mobile)
+   ============================================================ */
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-banner h1 { font-size: 1.5rem; }
+}
